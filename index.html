@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>원신 가챠 가능 개수 계산기</title>
+    <style>
+        :root {
+            --primary: #4e6bff;
+            --primary-hover: #3b54d9;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #f59e0b;
+            --border: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 520px;
+            padding: 32px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            background-color: #0f172a;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .result-box {
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            display: none;
+        }
+
+        .result-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .result-card {
+            background-color: #0f172a;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .result-card .value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 4px;
+        }
+
+        .result-card .label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .formula-preview {
+            background-color: #0f172a;
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>✨ 원신 가챠 가능 개수 계산기</h1>
+        <p>직접 만든 수식을 기반으로 반천장 횟수와 추가 뽑기를 계산합니다.</p>
+    </div>
+
+    <div class="form-group">
+        <label for="x">가진 뽑기 수 (x)</label>
+        <input type="number" id="x" placeholder="예: 160" min="0" value="160">
+    </div>
+
+    <div class="form-group">
+        <label for="l">현재 쌓인 스택 수 (l)</label>
+        <input type="number" id="l" placeholder="예: 0" min="0" value="0">
+    </div>
+
+    <div class="form-group">
+        <label for="a">반천 스택 가정 수치 (a)</label>
+        <input type="number" id="a" placeholder="예: 80" min="1" value="80">
+    </div>
+
+    <button onclick="calculateGacha()">계산하기</button>
+
+    <div class="result-box" id="resultBox">
+        <div class="result-title">🎯 계산 결과</div>
+        
+        <div class="result-grid">
+            <div class="result-card">
+                <div class="label">① 반천 가능 개수 (n)</div>
+                <div class="value" id="resN">0회</div>
+            </div>
+            <div class="result-card">
+                <div class="label">② 반천 외 뽑기 가능 수 (q)</div>
+                <div class="value" id="resQ">0개</div>
+            </div>
+            <div class="result-card">
+                <div class="label">③ 페이백 뽑기 수 (P)</div>
+                <div class="value" id="resP">0개</div>
+            </div>
+            <div class="result-card">
+                <div class="label">④ 추가 뽑기 (m = P + q)</div>
+                <div class="value" id="resM">0개</div>
+            </div>
+        </div>
+
+        <div class="formula-preview">
+            <strong>📐 공식 적용 수치:</strong><br>
+            • 총 진행 가능 가챠 수: <span id="formulaDetail" class="highlight">0</span> 회<br>
+            • 수식: $a 	imes n + m + l = a 	imes \lfloor rac{x}{a} floor + (P + q) + l$
+        </div>
+    </div>
+</div>
+
+<script>
+    function calculateGacha() {
+        const x = parseInt(document.getElementById('x').value) || 0;
+        const l = parseInt(document.getElementById('l').value) || 0;
+        const a = parseInt(document.getElementById('a').value) || 80;
+
+        // 사용자 수식 그대로 적용:
+        // ① n = (x/a 의 몫)
+        const n = Math.floor(x / a);
+
+        // ② q = (x/a 의 나머지)
+        const q = x % a;
+
+        // ③ P = (11/5 * n 의 몫)
+        const P = Math.floor((11 / 5) * n);
+
+        // ④ 추가 뽑기 m = P + q
+        const m = P + q;
+
+        // an + m + l 계산
+        const totalPulls = (a * n) + m + l;
+
+        // 결과 표시
+        document.getElementById('resN').innerText = n + '회';
+        document.getElementById('resQ').innerText = q + '개';
+        document.getElementById('resP').innerText = P + '개';
+        document.getElementById('resM').innerText = m + '개';
+
+        document.getElementById('formulaDetail').innerText = `${a} × ${n} + ${m} + ${l} = ${totalPulls}회`;
+
+        document.getElementById('resultBox').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
