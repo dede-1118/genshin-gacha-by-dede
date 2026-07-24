@@ -59,6 +59,13 @@
             color: var(--text-muted);
         }
 
+        .header .tip {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
         .header .notice {
             font-size: 0.8rem;
             color: var(--accent);
@@ -187,7 +194,8 @@
     <div class="header">
         <h1>✨ 원신 가챠 가능 개수 계산기</h1>
         <p>반천장 횟수와 그 외 추가로 가능한 뽑기를 계산합니다.</p>
-        <div class="notice">※대략적 참고 지표로 봐주세요 오차범위 약간 있을 수 있음※</div>
+        <div class="tip">현재 스택 수를 0으로 넣을 시: 당장 가능한 뽑기 수가 나와요!</div>
+        <div class="notice">※대략적 참고 지표로 봐주세요 오차범위 약간 있을 수 있음(페이백 개수가 최소인 기준으로 계산됨)※</div>
         <div class="formula-text">
             페이백 뽑기 수 = 스타더스트, 스타라이트로 교환할 수 있는 인연<br>
             추가 뽑기 = 페이백 + 반천 외 가능 수<br>
