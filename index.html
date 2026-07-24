@@ -70,7 +70,7 @@
             font-size: 0.8rem;
             color: #cbd5e1;
             margin-top: 12px;
-            line-height: 1.8;
+            line-height: 2;
             background-color: #0f172a;
             padding: 10px;
             border-radius: 6px;
@@ -165,17 +165,6 @@
             color: var(--text-muted);
         }
 
-        .formula-info {
-            background-color: #0f172a;
-            border: 1px dashed var(--border);
-            border-radius: 8px;
-            padding: 12px;
-            font-size: 0.85rem;
-            color: #cbd5e1;
-            line-height: 1.8;
-            margin-bottom: 16px;
-        }
-
         .formula-preview {
             background-color: #0f172a;
             border: 1px dashed var(--border);
@@ -201,7 +190,8 @@
         <div class="notice">※대략적 참고 지표로 봐주세요 오차범위 약간 있을 수 있음※</div>
         <div class="formula-text">
             페이백 뽑기 수 = 스타더스트, 스타라이트로 교환할 수 있는 인연<br>
-            추가 뽑기 = 페이백 + 반천 외 가능 수
+            추가 뽑기 = 페이백 + 반천 외 가능 수<br>
+            총 진행 가능 가챠 수 = 가진 뽑기 수 + 추가 뽑기 + 현재 스택
         </div>
     </div>
 
@@ -242,11 +232,6 @@
                 <div class="label">추가 뽑기</div>
                 <div class="value" id="resM">0개</div>
             </div>
-        </div>
-
-        <div class="formula-info">
-            <strong>추가 뽑기 = 페이백 + 반천 외 가능 수</strong><br>
-            <strong>총 진행 가능 가챠 수 = 가진 뽑기 수 + 추가 뽑기 + 현재 스택</strong>
         </div>
 
         <div class="formula-preview">
