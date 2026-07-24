@@ -70,7 +70,7 @@
             font-size: 0.8rem;
             color: #cbd5e1;
             margin-top: 12px;
-            line-height: 1.5;
+            line-height: 1.8;
             background-color: #0f172a;
             padding: 10px;
             border-radius: 6px;
@@ -188,7 +188,10 @@
         <h1>✨ 원신 가챠 가능 개수 계산기</h1>
         <p>반천장 횟수와 그 외 추가로 가능한 뽑기를 계산합니다.</p>
         <div class="notice">※대략적 참고 지표로 봐주세요 오차범위 약간 있을 수 있음※</div>
-        <div class="formula-text">페이백 뽑기 수 = 스타더스트, 스타라이트로 교환할 수 있는 인연 + 반천 외로 뽑기 가능한 수</div>
+        <div class="formula-text">
+            페이백 뽑기 수 = 스타더스트, 스타라이트로 교환할 수 있는 인연<br>
+            추가 뽑기 = 페이백 + 반천 외 가능 수
+        </div>
     </div>
 
     <div class="form-group">
@@ -231,7 +234,7 @@
         </div>
 
         <div class="formula-preview">
-            <strong>총 진행 가능 가챠 수: <span id="formulaDetail" class="highlight">0</span> 회</strong>
+            <strong>총 진행 가능 가챠 수: <span id="formulaDetail" class="highlight">0</span></strong>
         </div>
     </div>
 </div>
@@ -264,7 +267,7 @@
         document.getElementById('resP').innerText = P + '개';
         document.getElementById('resM').innerText = m + '개';
 
-        document.getElementById('formulaDetail').innerText = `${totalPulls}회`;
+        document.getElementById('formulaDetail').innerText = totalPulls;
 
         document.getElementById('resultBox').style.display = 'block';
     }
