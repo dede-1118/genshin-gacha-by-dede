@@ -172,7 +172,7 @@
             padding: 12px;
             font-size: 0.85rem;
             color: #cbd5e1;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         .highlight {
@@ -234,7 +234,9 @@
         </div>
 
         <div class="formula-preview">
-            <strong>총 진행 가능 가챠 수: <span id="formulaDetail" class="highlight">0</span></strong>
+            <strong>추가 뽑기 = 페이백 + 반천 외 가능 수</strong><br>
+            <strong>총 진행 가능 가챠 수 = 가진 뽑기 수 + 추가 뽑기 + 현재 스택</strong><br><br>
+            <strong>총 진행 가능 가챠 수: <span id="formulaDetail" class="highlight">0</span>회</strong>
         </div>
     </div>
 </div>
@@ -267,7 +269,7 @@
         document.getElementById('resP').innerText = P + '개';
         document.getElementById('resM').innerText = m + '개';
 
-        document.getElementById('formulaDetail').innerText = totalPulls;
+        document.getElementById('formulaDetail').innerText = totalPulls + '회';
 
         document.getElementById('resultBox').style.display = 'block';
     }
