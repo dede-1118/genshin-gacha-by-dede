@@ -66,6 +66,17 @@
             font-weight: 600;
         }
 
+        .header .formula-text {
+            font-size: 0.8rem;
+            color: #cbd5e1;
+            margin-top: 12px;
+            line-height: 1.5;
+            background-color: #0f172a;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary);
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -177,20 +188,21 @@
         <h1>✨ 원신 가챠 가능 개수 계산기</h1>
         <p>반천장 횟수와 그 외 추가로 가능한 뽑기를 계산합니다.</p>
         <div class="notice">※대략적 참고 지표로 봐주세요 오차범위 약간 있을 수 있음※</div>
+        <div class="formula-text">페이백 뽑기 수 = 스타더스트, 스타라이트로 교환할 수 있는 인연 + 반천 외로 뽑기 가능한 수</div>
     </div>
 
     <div class="form-group">
-        <label for="x">가진 뽑기 수 (x)</label>
+        <label for="x">가진 뽑기 수</label>
         <input type="number" id="x" placeholder="예: 160" min="0" value="160">
     </div>
 
     <div class="form-group">
-        <label for="l">현재 쌓인 스택 수 (l)</label>
+        <label for="l">현재 쌓인 스택 수</label>
         <input type="number" id="l" placeholder="예: 0" min="0" value="0">
     </div>
 
     <div class="form-group">
-        <label for="a">반천 스택 가정 수치 (a)</label>
+        <label for="a">반천 스택 가정 수치</label>
         <input type="number" id="a" placeholder="예: 80" min="1" value="80">
     </div>
 
@@ -201,19 +213,19 @@
         
         <div class="result-grid">
             <div class="result-card">
-                <div class="label">① 반천 가능 개수 (n)</div>
+                <div class="label">반천 가능 개수</div>
                 <div class="value" id="resN">0회</div>
             </div>
             <div class="result-card">
-                <div class="label">② 반천 외 뽑기 가능 수 (q)</div>
+                <div class="label">반천 외 뽑기 가능 수</div>
                 <div class="value" id="resQ">0개</div>
             </div>
             <div class="result-card">
-                <div class="label">③ 페이백 뽑기 수 (P)</div>
+                <div class="label">페이백 뽑기 수</div>
                 <div class="value" id="resP">0개</div>
             </div>
             <div class="result-card">
-                <div class="label">④ 추가 뽑기 (m = P + q)</div>
+                <div class="label">추가 뽑기</div>
                 <div class="value" id="resM">0개</div>
             </div>
         </div>
