@@ -59,6 +59,13 @@
             color: var(--text-muted);
         }
 
+        .header .notice {
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -168,7 +175,8 @@
 <div class="container">
     <div class="header">
         <h1>✨ 원신 가챠 가능 개수 계산기</h1>
-        <p>직접 만든 수식을 기반으로 반천장 횟수와 추가 뽑기를 계산합니다.</p>
+        <p>반천장 횟수와 그 외 추가로 가능한 뽑기를 계산합니다.</p>
+        <div class="notice">※대략적 참고 지표로 봐주세요 오차범위 약간 있을 수 있음※</div>
     </div>
 
     <div class="form-group">
@@ -211,9 +219,7 @@
         </div>
 
         <div class="formula-preview">
-            <strong>📐 공식 적용 수치:</strong><br>
-            • 총 진행 가능 가챠 수: <span id="formulaDetail" class="highlight">0</span> 회<br>
-            • 수식: a × n + m + l = a × ⌊x/a⌋ + (P + q) + l
+            <strong>총 진행 가능 가챠 수: <span id="formulaDetail" class="highlight">0</span> 회</strong>
         </div>
     </div>
 </div>
@@ -246,7 +252,7 @@
         document.getElementById('resP').innerText = P + '개';
         document.getElementById('resM').innerText = m + '개';
 
-        document.getElementById('formulaDetail').innerText = `${a} × ${n} + ${m} + ${l} = ${totalPulls}회`;
+        document.getElementById('formulaDetail').innerText = `${totalPulls}회`;
 
         document.getElementById('resultBox').style.display = 'block';
     }
